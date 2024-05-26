@@ -1,15 +1,15 @@
 package com.example.like_comment_service.DAOs;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.like_comment_service.Models.Like;
+import com.example.like_comment_service.Models.commentlike;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface likerepo extends JpaRepository<Like,Long> {
-
-    public List<Like> findAllByObjid(Long postid);
+public interface comments_likes extends JpaRepository<commentlike,Long>{
+    
+  public List<Like> findAllByObjid(Long postid);
     public Like findByObjid(Long postid);
 
 
@@ -21,5 +21,6 @@ public interface likerepo extends JpaRepository<Like,Long> {
 
     public void deleteByObjidAndAuthorName(Long objid,String author);
 
-    public Like findByObjidAndAuthorName(Long objid,String author);
+    public commentlike findByObjidAndAuthorName(Long objid,String author);
+
 }

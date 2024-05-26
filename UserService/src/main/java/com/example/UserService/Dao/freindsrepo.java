@@ -12,5 +12,6 @@ List<friends> findAllByFollowing (String following);
 void deleteByFollowingAndFollower(String Following,String Follower);
 void deleteAllByFollowing(String Following);
 void deleteAllByFollower(String Follower);
+friends findByFollowingAndFollower(String followoing,String Follower);
 
 }

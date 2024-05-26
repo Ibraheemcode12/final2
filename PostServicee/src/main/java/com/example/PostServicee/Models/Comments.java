@@ -31,7 +31,7 @@ public class Comments {
 
     @NotBlank(message = "type somethin....")
     private String content;
-   
+    private int likes;
 
     
     public Comments(){}

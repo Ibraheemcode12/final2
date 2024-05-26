@@ -32,10 +32,16 @@ public class Comments_likes_Controller {
 
 
    @PostMapping("/like")
-   public ResponseEntity<Boolean> create_like(@RequestBody Like  like,@RequestHeader("Username") String username) {  // the Json obj sent from the user will contain his/her username and the postid they liked
-       return ResponseEntity.ok(commentservice.save_like(like,username));
+   public ResponseEntity<Integer> create_like_for_posts(@RequestBody Like  like,@RequestHeader("Username") String username) {  // the Json obj sent from the user will contain his/her username and the postid they liked
+       return ResponseEntity.ok(commentservice.save_like_for_posts(like,username));
    }
 
+
+   
+   @PostMapping("/like_comment")
+   public ResponseEntity<Integer> create_like_for_comment(@RequestBody commentlike  like,@RequestHeader("Username") String username) {  // the Json obj sent from the user will contain his/her username and the postid they liked
+       return ResponseEntity.ok(commentservice.save_like_for_comments(like,username));
+   }
 
 
    @PostMapping("/comment")
