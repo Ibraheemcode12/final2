@@ -8,8 +8,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "likes")
-public class Like {
+@Table(name = "commentlikes")
+public class commentlike {
     
 @Id @GeneratedValue private Long id;
 
@@ -17,12 +17,12 @@ private String authorName;
 private Long objid;
 
 
-public Like(String auth,Long ID){
+public commentlike(String auth,Long ID){
     this.authorName=auth;
     this.objid=ID;
 }
 
-public Like(){
+public commentlike(){
 
 }
 

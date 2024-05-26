@@ -8,6 +8,7 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
+
 import com.example.Gateway.Authfilter.authfilter;
 
 @SpringBootApplication
@@ -17,9 +18,11 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
-
+ 
 @Autowired
 authfilter authfilte;
+
+
 
 	@Bean
 	public RouteLocator routesLocator(RouteLocatorBuilder builder) {

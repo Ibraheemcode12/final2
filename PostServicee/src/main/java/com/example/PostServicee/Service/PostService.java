@@ -44,7 +44,7 @@ public class PostService {
 
     org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(PostService.class);
 
-    private final String folder = "C:/Users/Bashoofak/Desktop/final1/PostServicee/src/main/java/com/example/PostServicee/images/";
+    private final String folder = "C:/Users/Bashoofak/Desktop/final2/PostServicee/src/main/java/com/example/PostServicee/images/";
 
 
     // Wont be calling the comment_like microservice for the get_posts because this will the slow systme a lot, in short Having to call the comment_like service like a 1000 or more times to load 
@@ -126,10 +126,14 @@ public ResponseEntity<?> getimage(String path){
             Post post = new Post();
             String uuid = UUID.randomUUID().toString();
             String path = folder+uuid+".png";
-            file.transferTo(new File(path));
+
+            if(file != null){
+                file.transferTo(new File(path));
+            post.setPath(uuid); // Saving the post image path.
+            }
+
             post.setTimestamp(LocalDateTime.now()); // marking the post creation time
             post.setAuthorName(username); // setting the author name
-            post.setPath(uuid); // Saving the post image path.
             post.setContent(content);
             postrepo.save(post); // Saving it into the database
             return true;

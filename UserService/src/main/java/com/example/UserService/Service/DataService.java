@@ -83,7 +83,7 @@ public class DataService {
     }
 
     // sign in method
-    public ResponseEntity<?> Look_for_user_upon_sign_in(User userreq) {
+    public ResponseEntity<userdto> Look_for_user_upon_sign_in(User userreq) {
         try {
         
             // giving the user req password and username to the auth manager to check if they are valid.
@@ -108,8 +108,19 @@ public class DataService {
     }
 
     // a method to send a follow req
+    @Transactional
     public boolean follow(friends friende,String username) { 
         try {
+
+if(userrepo.findByUsername(friende.getFollowing()) == null){
+    throw new UserNotFoundException("User does not exist...");
+}
+
+if(freindsrepo.findByFollowingAndFollower(friende.getFollowing(),username) != null){
+freindsrepo.deleteByFollowingAndFollower(friende.getFollowing(),username);
+    return true;
+}
+
 
 friende.setFollower(username);
             freindsrepo.save(friende);
