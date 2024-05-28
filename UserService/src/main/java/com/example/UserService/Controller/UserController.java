@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -72,6 +74,10 @@ return dataService.Look_for_user_upon_sign_in(user);
    }
 
 
+   @PutMapping("/username")
+   public ResponseEntity<User> putMethodName(@RequestHeader("Username") String username, @RequestBody User entity) {
+       return ResponseEntity.ok(dataService.edit_user(username, entity));
+   }
 
    ////
 }
