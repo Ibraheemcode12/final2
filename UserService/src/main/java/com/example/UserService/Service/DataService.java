@@ -107,10 +107,37 @@ public class DataService {
         }
     }
 
+
+    public User edit_user(String username,User info){ // a method to edit the users info like their bio or email
+
+        try{
+        User user = userrepo.findByUsername(username);
+        if(user == null){
+            throw new UserNotFoundException("User does not exist...");
+        }
+         user.setBio(info.getBio());
+         user.setEmail(info.getEmail());
+         userrepo.save(user);
+
+         logger.info("User "+username+ " updated their account");
+
+         return user;
+        }catch(Exception error){
+            logger.error("\u001B[31m " + error + " \u001B[0m");
+               return null; 
+        }
+
+    }
+
+
     // a method to send a follow req
     @Transactional
     public boolean follow(friends friende,String username) { 
         try {
+
+        if(friende.getFollowing().equals(username)){
+            return false;
+        }
 
 if(userrepo.findByUsername(friende.getFollowing()) == null){
     throw new UserNotFoundException("User does not exist...");
@@ -131,6 +158,8 @@ friende.setFollower(username);
             return false;
         }
     }
+
+
 
     @Transactional // Deleting a user 
     public boolean deleteUser(String username) {
